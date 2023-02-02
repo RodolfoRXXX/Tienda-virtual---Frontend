@@ -1,1 +1,64 @@
-<p>checkout works!</p>
+<div class="container">
+    <form class="form item">
+        <mat-form-field class="form__element">
+            <input 
+                matInput
+                placeholder="Nombre"
+                [(ngModel)]="model.name"
+                name="name"
+                #name="ngModel"
+            />
+            <mat-error *ngIf=" !name.valid || name.pristine ">
+                El nombre es requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-radio-group class="form__element">
+            <p>Elegí una opción de envío</p>
+            <mat-radio-button 
+                class="radioButton"
+                value="pickup"
+                (change)="onPickupOrDelivery(false)"
+            >
+                Retirar del local
+            </mat-radio-button>
+            <mat-radio-button 
+                value="delivery"
+                (change)="onPickupOrDelivery(false)"
+            >
+                Enviar a mi domicilio
+            </mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field class="form__element">
+            <input
+                matInput
+                placeholder="Dirección de envío"
+                [(ngModel)]="model.shippingAddress"
+                name="city"
+                #city="ngModel"
+                type="text">
+        </mat-form-field>
+        <mat-form-field class="form__element">
+            <mat-label>Selecciona una opción:</mat-label>
+            <mat-select
+                name="store"
+                #store="ngModel" 
+                [(ngModel)]="model.store"   
+            >    
+                <mat-option [value]="store" *ngFor="let store of stores">
+                    {{ store.name }} - {{ store.openingHours }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+
+<div class="container__button">
+    <button
+        [disabled]=""
+        mat-raised-button
+        color="primary"
+        type="submit"
+    >
+        Finalizar compra
+    </button>
+</div>
