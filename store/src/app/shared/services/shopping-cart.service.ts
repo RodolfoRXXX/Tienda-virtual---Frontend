@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Product } from "src/app/pages/products/interfaces/product.interface";
 
 @Injectable({
@@ -9,9 +9,12 @@ export class ShoppingCartService {
     
     products: Product[] = [];
 
-    private cartSubject = new Subject<Product[]>();
-    private totalSubject = new Subject<number>();
-    private quantitySubject = new Subject<number>();
+    //VER VIDEO DE DIFERENCIA ENTRE SUBJECT Y BEHAVIORSUBJECT
+    //En este caso Subject entrega valores futuros y no los anteriores como sí lo hace behaviorSubject
+
+    private cartSubject = new BehaviorSubject<Product[]>([]);
+    private totalSubject = new BehaviorSubject<number>(0);
+    private quantitySubject = new BehaviorSubject<number>(0);
 
     get cartAction$(): Observable<Product[]> { //si la función devuelve un observable, entonces por convención lleva "$" en el nombre de la función
         return this.cartSubject.asObservable();
