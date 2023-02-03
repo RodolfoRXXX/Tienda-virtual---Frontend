@@ -8,14 +8,14 @@ import { Product } from '../interfaces/product.interface';
 })
 export class ProductsService {
 
-  private apiURL = 'http://localhost:3000/products';
+  private apiURL = 'http://localhost:3000';
 
   constructor(
     private http: HttpClient
   ) { }
 
   getProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.apiURL);
+    return this.http.get<Product[]>(`${this.apiURL}/products`);
   }
 }
 

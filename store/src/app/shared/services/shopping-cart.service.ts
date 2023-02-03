@@ -35,17 +35,22 @@ export class ShoppingCartService {
     }
 
     private addToCart(product: Product): void {
-        this.products.push(product);
+        const isProductInCart = this.products.find( ({id}) => id === product.id );
+        if(isProductInCart){
+            isProductInCart.qty += 1;
+        } else{
+            this.products.push({...product, qty:1});
+        }
         this.cartSubject.next(this.products);
     }
 
     private calcTotal(): void {
-        const total = this.products.reduce( (act, prod) => act +=prod.price, 0);
+        const total = this.products.reduce( (act, prod) => act += (prod.price * prod.qty), 0);
         this.totalSubject.next(total);
     }
 
     private quantityProducts(): void {
-        const quantity = this.products.length;
+        const quantity = this.products.reduce( (act, prod) => act += prod.qty, 0 );
         this.quantitySubject.next(quantity);
     }
 
