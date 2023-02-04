@@ -128,10 +128,20 @@
     ],
     "detailsOrders": [
       {
-        "id": 1,
+        "details": [
+          {
+            "productId": 1,
+            "productName": "Essential Typescript 4: From begginer To Pro",
+            "quantity": 2
+          },
+          {
+            "productId": 2,
+            "productName": "Hackeando el cerebro de tus compradores: PsychoGrowth",
+            "quantity": 1
+          }
+        ],
         "orderId": 1,
-        "quantity": 10,
-        "productName": "Product name"
+        "id": 2
       }
     ]
   }
