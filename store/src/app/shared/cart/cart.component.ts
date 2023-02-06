@@ -17,7 +17,7 @@ import { ShoppingCartService } from "../services/shopping-cart.service";
 // "dataCart" es un alias del objeto
 export class CartComponent {
 
-    cart$ = this.shoppingCartSvc.cartAction$;
+    //cart$ = this.shoppingCartSvc.cartAction$;
     total$ = this.shoppingCartSvc.totalAction$;
     quantity$ = this.shoppingCartSvc.quantityAction$;
 
